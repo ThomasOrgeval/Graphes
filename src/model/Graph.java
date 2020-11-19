@@ -80,4 +80,21 @@ public class Graph {
         }
         return visited;
     }
+
+    public Set<String> breadthFirstSearch(String root) {
+        Set<String> visited = new LinkedHashSet<>();
+        Queue<String> queue = new LinkedList<>();
+        queue.add(root);
+        visited.add(root);
+        while (!queue.isEmpty()) {
+            Vertex vertex = new Vertex(queue.poll());
+            for (Vertex v : this.getAdjacent(vertex)) {
+                if (!visited.contains(v.vertex)) {
+                    visited.add(v.vertex);
+                    queue.add(v.vertex);
+                }
+            }
+        }
+        return visited;
+    }
 }
