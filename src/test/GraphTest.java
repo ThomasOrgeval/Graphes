@@ -1,9 +1,11 @@
-package model.test;
+package test;
 
 import model.Graph;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static utils.Breadth.breadthFirstSearch;
+import static utils.Depth.depthFirstSearch;
 
 public class GraphTest {
 
@@ -24,27 +26,27 @@ public class GraphTest {
     }
 
     @Test
-    public void testDepthFirstSearch() {
+    public void testDepthFirstSearch1() {
         Graph graph = createGraph();
-        assertEquals("[Bob, Rob, Maria, Alice, Mark]", graph.depthFirstSearch("Bob").toString());
+        assertEquals("[Bob, Rob, Maria, Alice, Mark]", depthFirstSearch(graph, "Bob").toString());
     }
 
     @Test
     public void testDepthFirstSearch2() {
         Graph graph = createGraph();
-        assertEquals("[Alice, Maria, Rob, Mark, Bob]", graph.depthFirstSearch("Alice").toString());
+        assertEquals("[Alice, Maria, Rob, Mark, Bob]", depthFirstSearch(graph, "Alice").toString());
     }
 
     @Test
-    public void testBreadthFirstSearch() {
+    public void testBreadthFirstSearch1() {
         Graph graph = createGraph();
-        assertEquals("[Bob, Alice, Rob, Mark, Maria]", graph.breadthFirstSearch("Bob").toString());
+        assertEquals("[Bob, Alice, Rob, Mark, Maria]", breadthFirstSearch(graph, "Bob").toString());
     }
 
     @Test
     public void testBreadthFirstSearch2() {
         Graph graph = createGraph();
-        assertEquals("[Alice, Bob, Mark, Maria, Rob]", graph.breadthFirstSearch("Alice").toString());
+        assertEquals("[Alice, Bob, Mark, Maria, Rob]", breadthFirstSearch(graph, "Alice").toString());
     }
 
 }

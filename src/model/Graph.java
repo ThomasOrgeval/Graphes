@@ -64,37 +64,4 @@ public class Graph {
     public void removeEdge(String vertex1, String vertex2) {
         removeEdge(new Vertex(vertex1), new Vertex(vertex2));
     }
-
-    public Set<String> depthFirstSearch(String root) {
-        Set<String> visited = new LinkedHashSet<>();
-        Stack<String> stack = new Stack<>();
-        stack.push(root);
-        while (!stack.isEmpty()) {
-            Vertex vertex = new Vertex(stack.pop());
-            if (!visited.contains(vertex.toString())) {
-                visited.add(vertex.toString());
-                for (Vertex v : this.getAdjacent(vertex)) {
-                    stack.push(v.vertex);
-                }
-            }
-        }
-        return visited;
-    }
-
-    public Set<String> breadthFirstSearch(String root) {
-        Set<String> visited = new LinkedHashSet<>();
-        Queue<String> queue = new LinkedList<>();
-        queue.add(root);
-        visited.add(root);
-        while (!queue.isEmpty()) {
-            Vertex vertex = new Vertex(queue.poll());
-            for (Vertex v : this.getAdjacent(vertex)) {
-                if (!visited.contains(v.vertex)) {
-                    visited.add(v.vertex);
-                    queue.add(v.vertex);
-                }
-            }
-        }
-        return visited;
-    }
 }

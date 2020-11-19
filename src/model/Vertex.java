@@ -10,6 +10,14 @@ public class Vertex {
         this.vertex = vertex;
     }
 
+    public String getVertex() {
+        return vertex;
+    }
+
+    public void setVertex(String vertex) {
+        this.vertex = vertex;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
