@@ -1,12 +1,15 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Graph {
 
     protected Map<Vertex, List<Vertex>> adjMatrix;
+
+    public Graph() {
+        this.adjMatrix = new HashMap<>();
+    }
 
     public Graph(Map<Vertex, List<Vertex>> adjMatrix) {
         this.adjMatrix = adjMatrix;
@@ -28,8 +31,20 @@ public class Graph {
         adjMatrix.putIfAbsent(vertex, new ArrayList<>());
     }
 
+    public void addVertex(String vertex) {
+        adjMatrix.putIfAbsent(new Vertex(vertex), new ArrayList<>());
+    }
+
     public void removeVertex(Vertex vertex) {
+        adjMatrix.values()
+                .stream()
+                .map(e -> e.remove(vertex))
+                .collect(Collectors.toList());
         adjMatrix.remove(vertex);
+    }
+
+    public void removeVertex(String vertex) {
+        removeVertex(new Vertex(vertex));
     }
 
     public void addEdge(Vertex vertex1, Vertex vertex2) {
@@ -37,8 +52,32 @@ public class Graph {
         adjMatrix.get(vertex2).add(vertex1);
     }
 
+    public void addEdge(String vertex1, String vertex2) {
+        addEdge(new Vertex(vertex1), new Vertex(vertex2));
+    }
+
     public void removeEdge(Vertex vertex1, Vertex vertex2) {
         if(adjMatrix.get(vertex1) != null) adjMatrix.get(vertex1).remove(vertex2);
         if(adjMatrix.get(vertex2) != null) adjMatrix.get(vertex2).remove(vertex1);
+    }
+
+    public void removeEdge(String vertex1, String vertex2) {
+        removeEdge(new Vertex(vertex1), new Vertex(vertex2));
+    }
+
+    public Set<String> depthFirstSearch(String root) {
+        Set<String> visited = new LinkedHashSet<>();
+        Stack<String> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            Vertex vertex = new Vertex(stack.pop());
+            if (!visited.contains(vertex.toString())) {
+                visited.add(vertex.toString());
+                for (Vertex v : this.getAdjacent(vertex)) {
+                    stack.push(v.vertex);
+                }
+            }
+        }
+        return visited;
     }
 }
