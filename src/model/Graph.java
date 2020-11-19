@@ -56,6 +56,14 @@ public class Graph {
         addEdge(new Vertex(vertex1), new Vertex(vertex2));
     }
 
+    public void addEdgeSense(Vertex vertex1, Vertex vertex2) {
+        adjMatrix.get(vertex1).add(vertex2);
+    }
+
+    public void addEdgeSense(String vertex1, String vertex2) {
+        addEdgeSense(new Vertex(vertex1), new Vertex(vertex2));
+    }
+
     public void removeEdge(Vertex vertex1, Vertex vertex2) {
         if(adjMatrix.get(vertex1) != null) adjMatrix.get(vertex1).remove(vertex2);
         if(adjMatrix.get(vertex2) != null) adjMatrix.get(vertex2).remove(vertex1);
@@ -63,5 +71,18 @@ public class Graph {
 
     public void removeEdge(String vertex1, String vertex2) {
         removeEdge(new Vertex(vertex1), new Vertex(vertex2));
+    }
+
+    public void removeEdgeSense(Vertex vertex1, Vertex vertex2) {
+        if(adjMatrix.get(vertex1) != null) adjMatrix.get(vertex1).remove(vertex2);
+    }
+
+    public void removeEdgeSense(String vertex1, String vertex2) {
+        removeEdgeSense(new Vertex(vertex1), new Vertex(vertex2));
+    }
+
+    @Override
+    public String toString() {
+        return "Graph="+ adjMatrix + "";
     }
 }
