@@ -82,6 +82,19 @@ public class Graph {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Graph graph = (Graph) o;
+        return Objects.equals(adjMatrix, graph.adjMatrix);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(adjMatrix);
+    }
+
+    @Override
     public String toString() {
         return "Graph="+ adjMatrix + "";
     }

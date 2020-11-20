@@ -13,14 +13,15 @@ public class Depth {
         Set<String> visited = new LinkedHashSet<>();
         Stack<String> stack = new Stack<>();
         stack.push(root);
+        Vertex vertex = new Vertex(root);
         while (!stack.isEmpty()) {
-            Vertex vertex = new Vertex(stack.pop());
             if (!visited.contains(vertex.toString())) {
                 visited.add(vertex.toString());
                 for (Vertex v : graph.getAdjacent(vertex)) {
                     stack.push(v.getVertex());
                 }
             }
+            vertex = new Vertex(stack.pop());
         }
         return visited;
     }
