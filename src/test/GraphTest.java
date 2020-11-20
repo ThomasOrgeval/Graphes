@@ -73,4 +73,11 @@ public class GraphTest {
         assertEquals("[Alice, Bob, Mark, Maria, Rob]", breadthFirstSearch(graph, "Alice").toString());
     }
 
+    @Test
+    public void testBreadthFirstSearch3() {
+        Graph graph = graph2();
+        assertEquals("[S, E, D, A, C, B]", breadthFirstSearch(graph, "S").toString());
+    }
+
+
 }
