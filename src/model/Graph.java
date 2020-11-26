@@ -81,6 +81,23 @@ public class Graph {
         removeEdgeSense(new Vertex(vertex1), new Vertex(vertex2));
     }
 
+    public void explore(Vertex root, Set<String> visited) {
+        visited.add(root.toString());
+        preVisit(root);
+        for (Vertex vertex : this.getAdjacent(root)) {
+            if (!visited.contains(vertex.toString())) explore(vertex, visited);
+        }
+        postVisit(root);
+    }
+
+    private void preVisit(Vertex root) {
+        System.out.print(root.toString() + " ");
+    }
+
+    private void postVisit(Vertex root) {
+        System.out.print(root.toString() + " ");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

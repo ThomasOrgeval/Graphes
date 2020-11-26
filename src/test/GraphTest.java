@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static utils.Breadth.breadthFirstSearch;
 import static utils.Depth.depthFirstSearch;
+import static utils.Depth.depthFirstSearchRecursive;
 
 public class GraphTest {
 
@@ -59,6 +60,18 @@ public class GraphTest {
     public void testDepthFirstSearch3() {
         Graph graph = graph2();
         assertEquals("[S, C, B, A, D, E]", depthFirstSearch(graph, "S").toString());
+    }
+
+    @Test
+    public void testDepthFirstSearchRecursive1() {
+        Graph graph = graph1();
+        assertEquals("[Bob, Alice, Mark, Rob, Maria]", depthFirstSearchRecursive(graph, "Bob").toString());
+    }
+
+    @Test
+    public void testDepthFirstSearchRecursive2() {
+        Graph graph = graph2();
+        assertEquals("[S, E, D, A, B, C]", depthFirstSearchRecursive(graph, "S").toString());
     }
 
     @Test

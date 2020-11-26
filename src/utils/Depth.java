@@ -26,4 +26,13 @@ public class Depth {
         return visited;
     }
 
+    public static Set<String> depthFirstSearchRecursive(Graph graph, String root) {
+        Set<String> visited = new LinkedHashSet<>();
+        for (Vertex vertex : graph.getAdjMatrix().keySet()) {
+            if (!visited.contains(vertex.toString())) graph.explore(new Vertex(root), visited);
+        }
+        System.out.println("\n" + visited.toString());
+        return visited;
+    }
+
 }
